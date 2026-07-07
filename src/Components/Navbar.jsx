@@ -17,6 +17,19 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState("home");
 
+  const scrollToSection = (id, attempts = 0) => {
+    const target = document.getElementById(id);
+
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    if (attempts < 6) {
+      window.setTimeout(() => scrollToSection(id, attempts + 1), 180);
+    }
+  };
+
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 12);
@@ -58,10 +71,7 @@ export default function Navbar() {
       return;
     }
 
-    const section = document.getElementById(target);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    scrollToSection(target);
     setActiveLink(target);
   };
 
@@ -125,14 +135,12 @@ export default function Navbar() {
 
         <div className="hidden lg:block">
           <button
+            type="button"
             onClick={() => {
-              const newsletter = document.getElementById("newsletter");
-              if (newsletter) {
-                newsletter.scrollIntoView({ behavior: "smooth", block: "start" });
-              }
+              scrollToSection("newsletter");
               setActiveLink("newsletter");
             }}
-            className="bg-white hover:bg-[#b8913e] transition-colors text-[#0b1a33] font-bold text-[13px] tracking-wide px-6 py-2.5 rounded-sm"
+            className="bg-white hover:bg-[#b8913e] cursor-pointer  transition-colors text-[#0b1a33] font-bold text-[13px] tracking-wide px-6 py-2.5 rounded-sm"
           >
             Contact Us
           </button>
@@ -176,10 +184,16 @@ export default function Navbar() {
               );
             })}
             <motion.button
+              type="button"
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2 }}
-              className="bg-[#c9a24b] text-white font-bold text-[13px] px-6 py-2.5 rounded-sm mt-2"
+              onClick={() => {
+                scrollToSection("newsletter");
+                setActiveLink("newsletter");
+                setOpen(false);
+              }}
+              className="bg-[#c9a24b] text-white cursor-pointer  font-bold text-[13px] px-6 py-2.5 rounded-sm mt-2"
             >
               Contact Us
             </motion.button>
