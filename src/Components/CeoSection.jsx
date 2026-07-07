@@ -20,7 +20,26 @@ export default function CeoSection() {
   return (
     <section id="ceo" className="bg-[#0b1a33] font-body py-0">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 items-stretch">
-        
+          {/* Image side */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="relative min-h-[420px] lg:min-h-[560px] overflow-hidden group"
+        >
+          <img
+            src={ceoimg}
+            alt="Chief Sir Paul 'Nwa Jesus' Onuora, CEO of Viera-Angela"
+            className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+            loading="lazy"
+            decoding="async"
+          />
+          {/* gradient so the photo blends into the navy panel */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0b1a33] via-[#0b1a33]/10 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-[#0b1a33]/20" />
+          {/* thin gold rule along the shared edge, desktop only */}
+         
+        </motion.div>
 
         {/* Copy side */}
         <motion.div
@@ -71,26 +90,7 @@ export default function CeoSection() {
       
         </motion.div>
 
-        {/* Image side */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="relative min-h-[420px] lg:min-h-[560px] overflow-hidden group"
-        >
-          <img
-            src={ceoimg}
-            alt="Chief Sir Paul 'Nwa Jesus' Onuora, CEO of Viera-Angela"
-            className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-            loading="lazy"
-            decoding="async"
-          />
-          {/* gradient so the photo blends into the navy panel */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0b1a33] via-[#0b1a33]/10 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-[#0b1a33]/20" />
-          {/* thin gold rule along the shared edge, desktop only */}
-         
-        </motion.div>
+      
       </div>
     </section>
   );
